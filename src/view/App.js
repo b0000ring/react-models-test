@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route,  Redirect, Switch } from "react-router-dom";
 
-import store from './store'
+import store from 'store'
 
 import AddTodo from './pages/AddTodo'
 import EditTodo from './pages/EditTodo'
@@ -23,7 +23,6 @@ function App() {
         </Switch>
       </Router>
     </Provider>
-    
   );
 }
 
