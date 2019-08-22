@@ -3,7 +3,7 @@ import view from 'view/view'
 
 export default function getTodos(Component) {
   const model = new TodoModel()
-  model.getAll()
+  model.loadAll()
 
   return view(Component, model)
 }

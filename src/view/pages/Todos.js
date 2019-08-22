@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Table from 'view/components/Table'
-import provider from 'controllers/getTodos'
+import controller from 'controllers/getTodos'
 
 function Todos({model}) {
     return (
@@ -12,4 +12,4 @@ function Todos({model}) {
     )
 }
 
-export default provider(Todos)
+export default controller(Todos)

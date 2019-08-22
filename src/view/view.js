@@ -5,7 +5,7 @@ export default function view(Component, model) {
 
     constructor() {
       super()
-      model.updateView = this.forceUpdate
+      model.updateView = this.forceUpdate.bind(this)
     }
 
     componentWillUnmount() {

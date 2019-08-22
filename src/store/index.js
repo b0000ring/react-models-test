@@ -3,11 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 // mean interface but it is reserved word
 import components from './reducers/components'
-import todo from './reducers/todo'
+import todos from './reducers/todos'
 
 const rootReducer = combineReducers({
     components: components,
-    todo: todo,
+    todos: todos,
 })
 
 const store = createStore(rootReducer, composeWithDevTools())
