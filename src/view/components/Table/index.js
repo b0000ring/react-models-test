@@ -1,8 +1,8 @@
 import React from 'react'
-
+import { withRouter } from 'react-router-dom'
 import styles from './Table.module.scss'
 
-export default function Table({model}) {
+function Table({model, history}) {
   function getHeaders() {
     return (
       <tr>
@@ -24,7 +24,7 @@ export default function Table({model}) {
 
   function renderItem(data, key) {
     return (
-      <tr key = {`row_${key}`}>
+      <tr onClick = {() => history.push(`/view/${data.id}`)} className = {styles.tr} key = {`row_${key}`}>
         {model.params.map(({name}) => (
           <td className = {styles.td} key = {`cell_${name}`}>
            {data[name]}
@@ -45,3 +45,5 @@ export default function Table({model}) {
     </table>
   )
 }
+
+export default withRouter(Table)

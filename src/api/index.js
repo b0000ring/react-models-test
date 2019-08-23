@@ -19,12 +19,38 @@ const todos = [
 	},
 ]
 
+// this is a pseudo api
 const api = {
     get: {
-			// this is a pseudo get request for todo's list
 			todo: async () => {
 				return {
 					result: todos
+				}
+			}
+		},
+		post: {
+			todo: async (todo) => {
+				const newTodo = {
+					...todo,
+					id: todos.length + 1
+				}
+				todos.push(newTodo)
+				return {
+					result: newTodo
+				} 
+			}
+		},
+		patch: {
+			todo: async (todo) => {
+				let pathcedTodo = null
+				todos.forEach((item, i) => {
+					if(item.id === todo.id){
+						todos[i] = todo
+						pathcedTodo = todos[i]
+					}
+				})
+				return {
+					result: pathcedTodo
 				}
 			}
 		}

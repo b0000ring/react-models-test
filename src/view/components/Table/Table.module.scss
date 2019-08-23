@@ -6,6 +6,13 @@ $padding: 10px;
   border-collapse: collapse;
 }
 
+.tr {
+  &:hover {
+    cursor: pointer;
+    background-color: lightblue;
+  }
+}
+
 .td {
   padding: $padding;
   border: $border;

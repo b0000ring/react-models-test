@@ -15,10 +15,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
+          <Route path="/all" exact component={Todos} />
           <Route path="/add" exact component={AddTodo} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/view/:id" component={ViewTodo} />
-          <Route path="/all" exact component={Todos} />
           <Redirect to="/all" />
         </Switch>
       </Router>

@@ -1,20 +1,20 @@
 import React from 'react'
 
-export default function view(Component, model) {
+export default function view(Component, connectModel) {
   return class View extends React.Component {
 
     constructor() {
       super()
-      model.updateView = this.forceUpdate.bind(this)
+      this.model = connectModel(this.forceUpdate.bind(this))
     }
 
     componentWillUnmount() {
       // maybe it's bad decision, need to think more
-      model.unsubscribeFromStore()
+      this.model.unsubscribeFromStore()
     }
 
     render() {
-      return <Component model={model} {...this.props} />
+      return <Component model={this.model} {...this.props} />
     }
   }
 }

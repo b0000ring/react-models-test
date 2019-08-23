@@ -1,0 +1,31 @@
+$width: 200px;
+
+.field {
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 27px;
+  }
+
+  input, select {
+    height: 20px;
+    width: $width;
+  }
+
+  textarea {
+    height: 100px;
+    width: $width;
+  }
+}
+
+.save {
+  font-size: 24px;
+  width: $width;
+}
+
+.error {
+  border-color: red;
+  color: red;
+}

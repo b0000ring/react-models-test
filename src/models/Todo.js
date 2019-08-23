@@ -15,10 +15,16 @@ class TodoModel extends Model {
   }
 
   params = [
-    {name: 'id', type: 'number', isRequired: true},
+    {name: 'id'},
     {name: 'title', type: 'string', maxLength: 50, isRequired: true},
     {name: 'text', type: 'string', maxLength: 200, isRequired: true},
-    {name: 'status', type: 'string'},
+    {name: 'status', type: 'string', isRequired: true},
+  ]
+
+  statuses = [
+    {name: 'acive'},
+    {name: 'on hold'},
+    {name: 'done'}
   ]
 
   storePart = 'todos'
@@ -37,6 +43,14 @@ class TodoModel extends Model {
     return Object.keys(dataProvider.getState(this.storePart).items)
   }
 
+  async save() {
+    await api.post.todo({
+      title: this.title,
+      text: this.text,
+      status: this.status,
+    })
+  }
+
   findByPk(id) {
     const data = dataProvider.getState(this.storePart).items[id]
     return {...data}
@@ -47,7 +61,7 @@ class TodoModel extends Model {
   }
 
   onStoreUpdate = (todos) => {
-    this.updateView()
+    this.updateView && this.updateView()
   }
 }
 
