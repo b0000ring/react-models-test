@@ -6,9 +6,7 @@ import store from 'store'
 
 import AddTodo from './pages/AddTodo'
 import EditTodo from './pages/EditTodo'
-import ViewTodo from './pages/ViewTodo'
 import Todos from './pages/Todos'
-
 
 function App() {
   return (
@@ -18,7 +16,6 @@ function App() {
           <Route path="/all" exact component={Todos} />
           <Route path="/add" exact component={AddTodo} />
           <Route path="/edit/:id" component={EditTodo} />
-          <Route path="/view/:id" component={ViewTodo} />
           <Redirect to="/all" />
         </Switch>
       </Router>

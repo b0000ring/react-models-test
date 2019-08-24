@@ -8,7 +8,7 @@ function Todos({model, history}) {
     return (
 			<div>
 					<h1>TODOS</h1>
-					<Table model = {model} />
+					<Table rowClick = {(id) => history.push(`/edit/${id}`)} model = {model} />
 					<br/>
 					<button onClick = {() => history.push('/add')}>
 						ADD TODO

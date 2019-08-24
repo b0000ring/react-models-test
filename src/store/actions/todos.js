@@ -1,4 +1,4 @@
-import { SAVE_TODOS } from '../constants'
+import { SAVE_TODOS, SAVE_TODO } from '../constants'
 
 export function saveTodos(todos) {
   return {
@@ -6,3 +6,10 @@ export function saveTodos(todos) {
     data: todos
   }
 } 
+
+export function saveTodo(todo) {
+  return {
+    type: SAVE_TODO,
+    data: todo
+  }
+}

@@ -1,7 +1,7 @@
 import Model from './Model'
 import api from 'api'
 import dataProvider from 'store/dataProvider'
-import { saveTodos } from 'store/actions/todos'
+import { saveTodos, saveTodo } from 'store/actions/todos'
 
 class TodoModel extends Model {
   constructor({id, title, text, status} = {}) {
@@ -22,10 +22,12 @@ class TodoModel extends Model {
   ]
 
   statuses = [
-    {name: 'acive'},
+    {name: 'active'},
     {name: 'on hold'},
     {name: 'done'}
   ]
+
+  loaded = true
 
   storePart = 'todos'
 
@@ -35,8 +37,19 @@ class TodoModel extends Model {
   status = ''
 
   async loadAll() {
-    const todos = await api.get.todo()
+    const todos = await api.get.todos()
     dataProvider.dispatch(saveTodos(todos.result))
+  }
+
+  async loadById(id) {
+    this.loaded = false
+    const todo = await api.get.todo(id)
+    dataProvider.dispatch(saveTodo(todo.result))
+    for(let key in todo.result) {
+      this[key] = todo.result[key]
+    }
+    this.loaded = true
+    this.onStoreUpdate()
   }
 
   getKeys() {
@@ -44,23 +57,38 @@ class TodoModel extends Model {
   }
 
   async save() {
-    await api.post.todo({
-      title: this.title,
-      text: this.text,
-      status: this.status,
-    })
+    if(this.id) {
+      await api.patch.todo({
+        id: this.id,
+        title: this.title,
+        text: this.text,
+        status: this.status,
+      })
+    } else {
+      await api.post.todo({
+        title: this.title,
+        text: this.text,
+        status: this.status,
+      })
+    }
   }
 
   findByPk(id) {
-    const data = dataProvider.getState(this.storePart).items[id]
-    return {...data}
+    let data = dataProvider.getState(this.storePart).items[id]
+    if(!data) {
+      const model = new TodoModel()
+      model.loadById(id)
+      return model
+    } else {
+      return new TodoModel({...data})
+    }
   }
 
   subscribeToStore = () => {
     this.storeUnsubscribe = dataProvider.subscribe(this.onStoreUpdate, this.storePart)
   }
 
-  onStoreUpdate = (todos) => {
+  onStoreUpdate = () => {
     this.updateView && this.updateView()
   }
 }

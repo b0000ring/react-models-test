@@ -1,4 +1,4 @@
-import { SAVE_TODOS } from '../constants'
+import { SAVE_TODOS, SAVE_TODO } from '../constants'
 
 export default function(state, action) {
 	const defaultState = {
@@ -16,6 +16,14 @@ export default function(state, action) {
 			})
 			return {
 				items: newTodos
+			}
+		case SAVE_TODO:
+			const todo = action.data
+			return {
+				items: {
+					...state.items,
+					[todo.id]: todo
+				}
 			}
 		default: 
 			return state

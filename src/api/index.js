@@ -22,9 +22,20 @@ const todos = [
 // this is a pseudo api
 const api = {
     get: {
-			todo: async () => {
+			todos: async () => {
 				return {
 					result: todos
+				}
+			},
+			todo: async (id) => {
+				let todo = {}
+				todos.forEach((item) => {
+					if(item.id == id) {
+						todo = item
+					}
+				})
+				return {
+					result: todo
 				}
 			}
 		},
@@ -42,15 +53,15 @@ const api = {
 		},
 		patch: {
 			todo: async (todo) => {
-				let pathcedTodo = null
+				let patchedTodo = null
 				todos.forEach((item, i) => {
 					if(item.id === todo.id){
 						todos[i] = todo
-						pathcedTodo = todos[i]
+						patchedTodo = todos[i]
 					}
 				})
 				return {
-					result: pathcedTodo
+					result: patchedTodo
 				}
 			}
 		}

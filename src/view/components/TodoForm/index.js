@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import styles from './TodoForm.module.scss'
 
 export default function TodoForm({model, onSuccess}) {
-  const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
-  const [status, setStatus] = useState('')
+  const [title, setTitle] = useState(model.title)
+  const [text, setText] = useState(model.text)
+  const [status, setStatus] = useState(model.status)
   const [error, setError] = useState('')
 
   function getStatuses() {
