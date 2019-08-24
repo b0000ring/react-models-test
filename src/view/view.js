@@ -11,6 +11,7 @@ export default function view(Component, connectModel) {
     componentWillUnmount() {
       // maybe it's bad decision, need to think more
       this.model.unsubscribeFromStore()
+      this.model.updateView = null
     }
 
     render() {

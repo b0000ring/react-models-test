@@ -30,7 +30,7 @@ const api = {
 			todo: async (id) => {
 				let todo = {}
 				todos.forEach((item) => {
-					if(item.id == id) {
+					if(item.id === parseInt(id)) {
 						todo = item
 					}
 				})

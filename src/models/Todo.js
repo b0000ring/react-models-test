@@ -4,7 +4,7 @@ import dataProvider from 'store/dataProvider'
 import { saveTodos, saveTodo } from 'store/actions/todos'
 
 class TodoModel extends Model {
-  constructor({id, title, text, status} = {}) {
+  constructor({id, title = '', text = '', status = ''} = {}) {
     super()
     this.subscribeToStore()
 

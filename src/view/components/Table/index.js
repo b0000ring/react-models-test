@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+
 import styles from './Table.module.scss'
 
 export default function Table({model, rowClick}) {
